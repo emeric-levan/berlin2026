@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>BER Berlin — Sound-Trip 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -49,7 +49,6 @@
       gap: 12px;
     }
 
-    /* Billet d'embarquement */
     .boarding-pass {
       background: #F8F9FA;
       border: 1.5px dashed #CBD5E1;
@@ -101,7 +100,6 @@
       padding: 0 4px;
     }
 
-    /* Cadre de platine */
     .turntable-wrapper {
       position: relative;
       width: 260px;
@@ -125,7 +123,6 @@
       pointer-events: none;
     }
 
-    /* Bras Fernsehturm intégré */
     .tonearm {
       position: absolute;
       top: 10px;
@@ -139,7 +136,6 @@
       pointer-events: none;
     }
 
-    /* Mouvements à l'activation */
     .turntable-wrapper.active .tonearm {
       transform: rotate(8deg);
     }
@@ -162,7 +158,6 @@
       user-select: none;
     }
 
-    /* Section Lecteurs */
     .player-section {
       display: none;
       flex-direction: column;
@@ -216,10 +211,11 @@
       display: flex;
     }
 
+    /* Cadre nettoyé sans fond noir résiduel */
     .iframe-box {
-      border-radius: 10px;
+      border-radius: 12px;
       overflow: hidden;
-      background: #000;
+      background: transparent;
     }
 
     .app-btn {
@@ -231,7 +227,7 @@
       font-weight: 700;
       font-size: 12px;
       text-decoration: none;
-      padding: 9px 14px;
+      padding: 10px 14px;
       border-radius: 999px;
       transition: transform 0.15s ease;
     }
@@ -254,138 +250,3 @@
 <body>
 
   <div class="phone-container">
-
-    <!-- En-tête -->
-    <div class="boarding-pass">
-      <div class="route-info">
-        <div class="route-title">En route vers Berlin ! ✈️</div>
-        <div class="sub-route">Lycée Vauvenargues ➔ Berlin (Flughafen Sound-Trip)</div>
-      </div>
-      <span class="airport-badge">BER</span>
-    </div>
-
-    <!-- Texte d'accueil -->
-    <p class="intro-text">
-      <strong>Prêt pour Berlin ?</strong> Plonge dans l'ambiance berlinoise dès l'aéroport en activant la platine avec la <em>Fernsehturm</em>.
-    </p>
-
-    <!-- Platine interactive -->
-    <div class="turntable-wrapper" id="turntable" onclick="togglePlatine()">
-      
-      <!-- Disque vinyle graphique -->
-      <svg class="vinyl-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="250" cy="250" r="230" fill="#18181B"/>
-        <circle cx="250" cy="250" r="215" fill="none" stroke="#27272A" stroke-width="2"/>
-        <circle cx="250" cy="250" r="190" fill="none" stroke="#27272A" stroke-width="1.5" stroke-dasharray="12 4"/>
-        <circle cx="250" cy="250" r="165" fill="none" stroke="#27272A" stroke-width="1.5"/>
-        <circle cx="250" cy="250" r="140" fill="none" stroke="#27272A" stroke-width="1"/>
-
-        <circle cx="250" cy="250" r="120" fill="#FAF3E0"/>
-        <circle cx="250" cy="250" r="105" fill="#9D0208"/>
-        <circle cx="250" cy="250" r="90" fill="#D00000"/>
-        <circle cx="250" cy="250" r="75" fill="#DC2F02"/>
-        <circle cx="250" cy="250" r="60" fill="#E85D04"/>
-        <circle cx="250" cy="250" r="45" fill="#F48C06"/>
-        <circle cx="250" cy="250" r="32" fill="#FAA307"/>
-        <circle cx="250" cy="250" r="20" fill="#FFBA08"/>
-        
-        <circle cx="250" cy="250" r="12" fill="#18181B"/>
-        <circle cx="250" cy="250" r="5" fill="#FAF3E0"/>
-      </svg>
-
-      <!-- Fernsehturm bien calée sur sa base -->
-      <svg class="tonearm" viewBox="0 0 100 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Axe de pivot -->
-        <circle cx="55" cy="25" r="18" fill="#CBD5E1" stroke="#64748B" stroke-width="2.5"/>
-        <circle cx="55" cy="25" r="7" fill="#18181B"/>
-        <!-- Pylône béton -->
-        <polygon points="51,32 59,32 48,125 36,125" fill="#94A3B8" stroke="#64748B" stroke-width="1.5"/>
-        <!-- Sphère Fernsehturm -->
-        <circle cx="42" cy="142" r="21" fill="#E2E8F0" stroke="#475569" stroke-width="2"/>
-        <line x1="26" y1="142" x2="58" y2="142" stroke="#94A3B8" stroke-width="1.5"/>
-        <line x1="42" y1="121" x2="42" y2="163" stroke="#94A3B8" stroke-width="1.5"/>
-        <!-- Antenne rouge et blanche -->
-        <line x1="42" y1="163" x2="24" y2="220" stroke="#EF4444" stroke-width="4.5" stroke-linecap="round"/>
-        <line x1="36" y1="182" x2="30" y2="201" stroke="#FFFFFF" stroke-width="4.5"/>
-        <!-- Tête de diamant -->
-        <polygon points="24,220 18,228 13,224 19,216" fill="#0F172A"/>
-        <circle cx="15" cy="226" r="2" fill="#E85D04"/>
-      </svg>
-    </div>
-
-    <!-- Texte interactif -->
-    <div class="tap-hint" id="tapHint" onclick="togglePlatine()">
-      👆 Touche la platine pour poser la Fernsehturm
-    </div>
-
-    <!-- Lecteurs intégrés -->
-    <div class="player-section" id="playerSection">
-      
-      <div class="platform-tabs">
-        <button type="button" class="tab-btn active" onclick="switchPlatform('spotify')">🟢 Spotify</button>
-        <button type="button" class="tab-btn" onclick="switchPlatform('apple')">🍎 Apple Music</button>
-      </div>
-
-      <!-- Spotify -->
-      <div class="tab-content active" id="tab-spotify">
-        <div class="iframe-box">
-          <iframe data-testid="embed-iframe" style="border-radius:10px" src="https://open.spotify.com/embed/playlist/4rqF3EMdG0nNfsnOoTzbBI?utm_source=generator&si=013f39cec2a54d84" width="100%" height="280" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
-        <a href="https://open.spotify.com/playlist/4rqF3EMdG0nNfsnOoTzbBI?si=013f39cec2a54d84" target="_blank" class="app-btn btn-spotify">
-          Ouvrir dans l'app Spotify
-        </a>
-      </div>
-
-      <!-- Apple Music -->
-      <div class="tab-content" id="tab-apple">
-        <div class="iframe-box">
-          <iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="175" style="width:100%;max-width:660px;overflow:hidden;border-radius:10px;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/fr/playlist/berlin-2026/pl.u-dj60sg5aov"></iframe>
-        </div>
-        <a href="https://music.apple.com/fr/playlist/berlin-2026/pl.u-dj60sg5aov" target="_blank" class="app-btn btn-apple">
-          Ouvrir dans Apple Music
-        </a>
-      </div>
-
-    </div>
-
-  </div>
-
-  <script>
-    let isPlaying = false;
-
-    function togglePlatine() {
-      const turntable = document.getElementById('turntable');
-      const playerSection = document.getElementById('playerSection');
-      const tapHint = document.getElementById('tapHint');
-
-      isPlaying = !isPlaying;
-
-      if (isPlaying) {
-        turntable.classList.add('active');
-        playerSection.classList.add('visible');
-        tapHint.innerHTML = '🟢 <em>Fernsehturm</em> en position — Bande-son active';
-      } else {
-        turntable.classList.remove('active');
-        playerSection.classList.remove('visible');
-        tapHint.innerHTML = '👆 Touche la platine pour poser la Fernsehturm';
-      }
-    }
-
-    function switchPlatform(platform) {
-      const tabs = document.querySelectorAll('.tab-btn');
-      tabs.forEach(t => t.classList.remove('active'));
-
-      document.getElementById('tab-spotify').classList.remove('active');
-      document.getElementById('tab-apple').classList.remove('active');
-
-      if (platform === 'spotify') {
-        tabs[0].classList.add('active');
-        document.getElementById('tab-spotify').classList.add('active');
-      } else {
-        tabs[1].classList.add('active');
-        document.getElementById('tab-apple').classList.add('active');
-      }
-    }
-  </script>
-</body>
-</html>
