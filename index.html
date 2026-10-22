@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Berlin 2026 • Voyage Euro Allemand | Lycée Vauvenargues</title>
+  
+  <!-- Fonts: Space Grotesk & Inter pour une typographie allemande moderne / Bauhaus néo-grotesque -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            berlinYellow: '#FCE77D',
+            warmCream: '#FDF7EB',
+            creamySurface: '#FFFDF7',
+            bauhausRed: '#E63946',
+            bauhausBlue: '#1D3557',
+            berlinTeal: '#457B9D',
+            charcoal: '#1E232A'
+          },
+          fontFamily: {
+            grotesk: ['"Space Grotesk"', 'sans-serif'],
+            sans: ['"Inter"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom vinyl animations & styling */
+    .vinyl-spinning {
+      animation: spinVinyl 3.6s linear infinite;
+    }
+    .vinyl-paused {
+      animation-play-state: paused;
+    }
+    @keyframes spinVinyl {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Tonearm Transition */
+    .tonearm-assembly {
+      transform-origin: 35px 35px;
+      transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .tonearm-resting {
+      transform: rotate(0deg);
+    }
+    .tonearm-playing {
+      transform: rotate(26deg);
+    }
+
+    /* Vinyl Grooves concentric rings effect */
+    .vinyl-texture {
+      background: radial-gradient(circle, 
+        transparent 38%, 
+        rgba(255,255,255,0.04) 39%, 
+        rgba(0,0,0,0.6) 40%, 
+        rgba(255,255,255,0.03) 48%, 
+        rgba(0,0,0,0.7) 50%, 
+        rgba(255,255,255,0.04) 62%, 
+        rgba(0,0,0,0.8) 65%, 
+        rgba(255,255,255,0.03) 78%, 
+        #111418 80%);
+    }
+
+    /* Subtle shimmer for the turntable platter */
+    .platter-shadow {
+      box-shadow: 0 25px 50px -12px rgba(45, 30, 10, 0.18), inset 0 2px 4px rgba(255,255,255,0.6);
+    }
+
+    /* Custom scrollbar for playlist */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.03);
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 0, 0, 0.28);
+    }
+  </style>
+</head>
+
+<body class="bg-[#FAF3E0] text-charcoal min-h-screen font-sans selection:bg-berlinYellow selection:text-charcoal flex flex-col justify-between overflow-x-hidden">
+
+  <!-- Header & Travel Badge -->
+  <header class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-4">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-amber-900/10 pb-6">
+      
+      <!-- Logo / Title Section -->
+      <div class="flex items-center space-x-3">
+        <div class="w-12 h-12 rounded-2xl bg-berlinYellow border-2 border-charcoal/15 flex items-center justify-center shadow-sm text-charcoal font-grotesk font-bold text-xl tracking-tighter">
+          BER
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs tracking-wider uppercase font-semibold text-amber-900/70 bg-amber-200/50 px-2.5 py-0.5 rounded-full">
+              Euro Allemand • 2026
+            </span>
+            <span class="inline-flex items-center text-xs font-medium text-emerald-800 bg-emerald-100/70 px-2 py-0.5 rounded-full">
+              <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-1.5 animate-pulse"></span>
+              En route vers Berlin
+            </span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-grotesk font-bold tracking-tight text-charcoal mt-1">
+            Lycée Vauvenargues ➔ Berlin
+          </h1>
+        </div>
+      </div>
+
+      <!-- Airport / Journey Mood Pill -->
+      <div class="bg-creamySurface/90 border border-amber-900/10 rounded-2xl px-4 py-2.5 flex items-center gap-3.5 shadow-sm">
+        <div class="w-9 h-9 rounded-xl bg-berlinTeal/10 text-berlinTeal flex items-center justify-center text-lg">
+          <i class="fa-solid fa-plane-departure"></i>
+        </div>
+        <div>
+          <p class="text-xs text-charcoal/60 font-medium">Session d'embarquement</p>
+          <p class="text-sm font-semibold font-grotesk text-charcoal">Flughafen Soundtrip</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Showcase Container -->
+  <main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex-1 flex flex-col justify-center">
+
+    <!-- Top Headline -->
+    <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-grotesk font-bold tracking-tight text-charcoal leading-tight">
+        Prêt pour Berlin ?
+      </h2>
+      <p class="text-base sm:text-lg text-charcoal/70 mt-2 font-normal">
+        Plonge dans l'ambiance berlinoise dès l'aéroport ! Active la platine, le bras <span class="font-semibold text-charcoal underline decoration-berlinYellow decoration-4">Fernsehturm</span> se pose, et laisse défiler les pépites de la pop & électro allemande.
+      </p>
+    </div>
+
+    <!-- Turntable & Interactive Player Dashboard -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- LEFT / TOP COLUMN: The Custom Berlin Turntable (7 cols) -->
+      <div class="lg:col-span-7 flex flex-col items-center">
+        
+        <!-- Turntable Wooden/Sleek Base -->
+        <div class="w-full max-w-[540px] bg-[#FAF5E8] border-2 border-stone-800/15 rounded-3xl p-5 sm:p-7 platter-shadow relative overflow-hidden">
+          
+          <!-- Subtle Bauhaus Corner Markings -->
+          <div class="absolute top-4 left-5 text-[10px] uppercase font-grotesk font-bold tracking-widest text-charcoal/30 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-bauhausRed"></span>
+            <span>MODEL BER-368 • FERNSEHTURM EDITION</span>
+          </div>
+          <div class="absolute top-4 right-5 text-[10px] font-mono text-charcoal/40 font-semibold tracking-wider">
+            33⅓ RPM • STEREO
+          </div>
+
+          <!-- Turntable Platter Deck -->
+          <div class="mt-4 relative flex items-center justify-center min-h-[360px] sm:min-h-[440px]">
+            
+            <!-- Metallic Sub-platter Ring -->
+            <div class="w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] rounded-full bg-stone-300/40 border border-stone-400/40 flex items-center justify-center shadow-inner relative">
+              
+              <!-- VINYL DISC -->
+              <div id="vinylRecord" class="w-[285px] h-[285px] sm:w-[360px] sm:h-[360px] rounded-full bg-[#151719] shadow-2xl relative flex items-center justify-center transition-transform vinyl-spinning vinyl-paused cursor-pointer overflow-hidden select-none">
+                
+                <!-- Grooves simulation layer -->
+                <div class="absolute inset-0 vinyl-texture rounded-full"></div>
+
+                <!-- Vinyl Light Reflection Glare -->
+                <div class="absolute inset-0 rounded-full opacity-25 pointer-events-none" 
+                     style="background: conic-gradient(from 45deg, transparent 0deg, rgba(255,255,255,0.3) 40deg, transparent 80deg, transparent 180deg, rgba(255,255,255,0.3) 220deg, transparent 260deg);"></div>
+
+                <!-- Record Center Label: Concentric Bauhaus Rings & Color Swatches -->
+                <div id="recordLabel" class="w-28 h-28 sm:w-36 sm:h-36 rounded-full relative p-2 shadow-lg flex items-center justify-center border-4 border-black/40 transition-colors duration-700"
+                     style="background: radial-gradient(circle, #FCE77D 25%, #E63946 55%, #1D3557 85%);">
+                  
+                  <!-- Label Typography & Spindle -->
+                  <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-cream border border-charcoal/30 flex flex-col items-center justify-center text-center p-1 relative z-10 shadow-sm">
+                    <span class="text-[8px] sm:text-[9px] font-bold font-grotesk tracking-widest uppercase text-charcoal line-clamp-1" id="labelArtist">P. Schilling</span>
+                    <span class="text-[7px] sm:text-[8px] font-medium text-charcoal/70 line-clamp-1" id="labelTrack">Major Tom</span>
+                    <div class="w-3.5 h-3.5 rounded-full bg-stone-900 border-2 border-stone-400 mt-0.5 shadow-inner"></div>
+                  </div>
+
+                  <!-- Ring details -->
+                  <div class="absolute inset-2 border border-white/30 rounded-full pointer-events-none"></div>
+                  <div class="absolute inset-5 border border-black/20 rounded-full pointer-events-none"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- THE TONEARM: BERLIN FERNSEHTURM (Tower needle) -->
+            <div class="absolute right-0 sm:right-2 top-2 sm:top-4 w-28 sm:w-36 h-[340px] sm:h-[400px] pointer-events-none z-20">
+              <svg id="fernsehturmTonearm" class="tonearm-assembly tonearm-resting w-full h-full filter drop-shadow-xl" viewBox="0 0 140 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                
+                <!-- Pivot Base (Turntable Corner Mount) -->
+                <circle cx="35" cy="35" r="28" fill="#D4D4D8" stroke="#71717A" stroke-width="2"/>
+                <circle cx="35" cy="35" r="20" fill="#27272A" />
+                <circle cx="35" cy="35" r="10" fill="#A1A1AA" stroke="#E4E4E7" stroke-width="1.5"/>
+
+                <!-- Lower Fernsehturm Shaft Structure (Braced concrete mast) -->
+                <path d="M30 45 L25 150 L45 150 L40 45 Z" fill="url(#shaftGrad)" stroke="#52525B" stroke-width="1.5"/>
+
+                <!-- Fernsehturm Observation Sphere (Iconic Kugelkopf) -->
+                <g filter="url(#sphereGlow)">
+                  <!-- Shadow Sphere -->
+                  <circle cx="35" cy="180" r="26" fill="url(#sphereGradient)" stroke="#3F3F46" stroke-width="1.5"/>
+                  
+                  <!-- Mirrored faceted segments of the sphere -->
+                  <path d="M12 180 Q35 160 58 180 Q35 200 12 180 Z" fill="none" stroke="#E4E4E7" stroke-width="1" opacity="0.6"/>
+                  <line x1="10" y1="180" x2="60" y2="180" stroke="#71717A" stroke-width="1.5"/>
+                  <circle cx="35" cy="180" r="14" fill="none" stroke="#A1A1AA" stroke-width="0.75" stroke-dasharray="2 2"/>
+                  <!-- Highlight glint -->
+                  <ellipse cx="28" cy="172" rx="7" ry="4" fill="#FFFFFF" opacity="0.5"/>
+                </g>
+
+                <!-- Upper Shaft & Red/White Broadcast Antenna Mast -->
+                <polygon points="32,206 38,206 37,280 33,280" fill="#E4E4E7" stroke="#71717A" stroke-width="1"/>
+                
+                <!-- Antenna segments (Red & White beacon colors of the Fernsehturm) -->
+                <!-- Red band 1 -->
+                <rect x="33" y="280" width="4" height="15" fill="#DC2626" />
+                <!-- White band -->
+                <rect x="33" y="295" width="4" height="15" fill="#FFFFFF" stroke="#D4D4D8" stroke-width="0.5"/>
+                <!-- Red band 2 -->
+                <rect x="33" y="310" width="4" height="15" fill="#DC2626" />
+                <!-- White band -->
+                <rect x="33" y="325" width="4" height="15" fill="#FFFFFF" stroke="#D4D4D8" stroke-width="0.5"/>
+                <!-- Upper Spire Needle Tip -->
+                <polygon points="34,340 36,340 35.5,372 34.5,372" fill="#E4E4E7" stroke="#52525B" stroke-width="0.5"/>
+                
+                <!-- Stylus Cartridge & Needle at the antenna tip -->
+                <path d="M31 372 L39 372 L37 385 L33 385 Z" fill="#18181B" stroke="#F59E0B" stroke-width="1.2"/>
+                <!-- Diamond tip indicator -->
+                <circle cx="35" cy="386" r="2.5" fill="#FCE77D" stroke="#B45309" stroke-width="0.8"/>
+
+                <!-- Gradients Definitions -->
+                <defs>
+                  <linearGradient id="shaftGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#E4E4E7"/>
+                    <stop offset="50%" stop-color="#A1A1AA"/>
+                    <stop offset="100%" stop-color="#71717A"/>
+                  </linearGradient>
+                  
+                  <radialGradient id="sphereGradient" cx="35%" cy="35%" r="65%">
+                    <stop offset="0%" stop-color="#FFFFFF"/>
+                    <stop offset="40%" stop-color="#D4D4D8"/>
+                    <stop offset="75%" stop-color="#71717A"/>
+                    <stop offset="100%" stop-color="#3F3F46"/>
+                  </radialGradient>
+                </defs>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Bottom controls bar embedded on Turntable base -->
+          <div class="mt-4 pt-4 border-t border-stone-800/10 flex flex-wrap items-center justify-between gap-4">
+            
+            <!-- Power & Tonearm quick indicator -->
+            <div class="flex items-center space-x-3">
+              <button id="mainPlayBtn" class="flex items-center justify-center w-12 h-12 rounded-2xl bg-charcoal text-berlinYellow hover:bg-stone-800 active:scale-95 transition-all shadow-md">
+                <i id="playIcon" class="fa-solid fa-play text-lg translate-x-0.5"></i>
+              </button>
+              <div>
+                <p class="text-xs uppercase font-grotesk tracking-wider font-bold text-charcoal/60">Lecture Platine</p>
+                <p id="needleStatus" class="text-xs font-semibold text-charcoal">Bras au repos (Arrêt)</p>
+              </div>
+            </div>
+
+            <!-- Pitch / Speed selector buttons for fun -->
+            <div class="flex items-center space-x-2 bg-stone-200/60 p-1.5 rounded-xl border border-stone-300/50">
+              <button class="px-2.5 py-1 text-xs font-bold font-grotesk rounded-lg bg-white shadow-xs text-charcoal">33 RPM</button>
+              <button class="px-2.5 py-1 text-xs font-bold font-grotesk rounded-lg text-charcoal/60 hover:text-charcoal transition-colors">45 RPM</button>
+              <button id="crackleToggle" class="px-2.5 py-1 text-xs font-medium rounded-lg text-charcoal/70 hover:bg-white/80 transition-all flex items-center gap-1">
+                <i class="fa-solid fa-volume-high text-[10px]"></i>
+                <span id="crackleLabel">Crackle ON</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Currently Playing Track Info Banner -->
+        <div class="w-full max-w-[540px] mt-4 bg-creamySurface border border-amber-900/10 rounded-2xl p-4 shadow-sm flex items-center justify-between">
+          <div class="flex items-center space-x-3.5 overflow-hidden">
+            <div class="w-10 h-10 rounded-xl bg-berlinYellow/60 text-charcoal flex items-center justify-center font-grotesk font-bold flex-shrink-0 text-base">
+              <i class="fa-solid fa-compact-disc animate-spin" id="smallDiscIcon" style="animation-duration: 4s; animation-play-state: paused;"></i>
+            </div>
+            <div class="truncate">
+              <h3 id="currentTrackTitle" class="font-grotesk font-bold text-charcoal text-base truncate">Major Tom (Völlig losgelöst)</h3>
+              <p id="currentTrackArtist" class="text-xs text-charcoal/70 truncate">Peter Schilling • NDW / Pop Culte</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-1 pl-2 flex-shrink-0">
+            <button id="prevBtn" class="p-2 text-charcoal/70 hover:text-charcoal hover:bg-amber-100/60 rounded-xl transition" title="Piste précédente">
+              <i class="fa-solid fa-backward-step"></i>
+            </button>
+            <button id="nextBtn" class="p-2 text-charcoal/70 hover:text-charcoal hover:bg-amber-100/60 rounded-xl transition" title="Piste suivante">
+              <i class="fa-solid fa-forward-step"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Vibe & Lyric German Quote card with French meaning -->
+        <div class="w-full max-w-[540px] mt-3 bg-amber-100/50 border border-amber-800/10 rounded-2xl p-3.5 text-xs text-charcoal/80 flex items-start gap-3">
+          <span class="text-lg text-amber-700 mt-0.5"><i class="fa-solid fa-quote-left"></i></span>
+          <div class="flex-1">
+            <p id="quoteGerman" class="font-semibold text-charcoal italic">"Dann hebt er ab und völlig losgelöst von der Erde schwebt das Raumschiff..."</p>
+            <p id="quoteFrench" class="text-charcoal/70 mt-1">« Alors il décolle et en apesanteur totale, loin de la Terre... » — L'hymne parfait pour le décollage à l'aéroport !</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: Curated Berlin Travel Playlist (5 cols) -->
+      <div class="lg:col-span-5 flex flex-col h-full">
+        
+        <div class="bg-creamySurface border-2 border-stone-800/10 rounded-3xl p-5 shadow-sm flex flex-col h-full max-h-[640px]">
+          
+          <!-- Playlist Header -->
+          <div class="flex items-center justify-between pb-3 border-b border-amber-900/10">
+            <div>
+              <span class="text-[11px] font-bold font-grotesk tracking-wider uppercase text-amber-800">Berlin Soundtrack</span>
+              <h3 class="text-xl font-grotesk font-bold text-charcoal">Playlist Voyage</h3>
+            </div>
+            <span id="trackCountBadge" class="text-xs font-semibold px-2.5 py-1 bg-berlinYellow rounded-full text-charcoal">
+              12 titres
+            </span>
+          </div>
+
+          <!-- Category Tags Filter -->
+          <div class="flex items-center gap-1.5 py-3 overflow-x-auto text-xs font-medium no-scrollbar">
+            <span class="px-2.5 py-1 rounded-full bg-charcoal text-white font-medium whitespace-nowrap">Tous les titres</span>
+            <span class="px-2.5 py-1 rounded-full bg-stone-200/70 text-charcoal/75 whitespace-nowrap">Classiques NDW</span>
+            <span class="px-2.5 py-1 rounded-full bg-stone-200/70 text-charcoal/75 whitespace-nowrap">Pop & Électro Berlin</span>
+          </div>
+
+          <!-- Playlist Interactive Track List -->
+          <div id="playlistContainer" class="flex-1 overflow-y-auto pr-1 space-y-2 mt-1">
+            <!-- Dynamically populated via JS -->
+          </div>
+
+          <!-- Airport tips for students at bottom of playlist -->
+          <div class="pt-4 mt-3 border-t border-amber-900/10 flex items-center justify-between text-xs text-charcoal/60">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-headphones text-berlinTeal text-sm"></i>
+              <span>Conseil : branche tes écouteurs dans le terminal !</span>
+            </div>
+            <button id="randomVibeBtn" class="hover:text-charcoal font-semibold underline underline-offset-2 flex items-center gap-1">
+              <i class="fa-solid fa-shuffle"></i> Aléatoire
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Student travel checklist mini-card -->
+        <div class="mt-4 bg-[#F2ECE1] border border-stone-300/60 rounded-2xl p-4 flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-lg bg-bauhausRed/15 text-bauhausRed flex items-center justify-center font-bold">
+              <i class="fa-solid fa-passport text-sm"></i>
+            </div>
+            <div>
+              <p class="text-xs font-semibold text-charcoal">Rappel Voyage</p>
+              <p class="text-[11px] text-charcoal/70">Carte d'identité valide & bonne humeur requises.</p>
+            </div>
+          </div>
+          <span class="text-xs font-grotesk font-bold uppercase text-amber-900 bg-amber-200/60 px-2 py-1 rounded-lg">Aix ✈ BER</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Educational & Cultural Mini-Info Banner: Why the Fernsehturm? -->
+    <section class="mt-12 bg-white/70 border border-stone-200 rounded-3xl p-6 sm:p-8 backdrop-blur-sm">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="flex gap-4">
+          <div class="w-10 h-10 rounded-2xl bg-berlinYellow flex items-center justify-center font-bold text-charcoal shrink-0">
+            01
+          </div>
+          <div>
+            <h4 class="font-grotesk font-bold text-charcoal text-base">La Fernsehturm d'Alexanderplatz</h4>
+            <p class="text-xs text-charcoal/70 mt-1 leading-relaxed">
+              Inaugurée en 1969, la tour culmine à 368 mètres. Elle est devenue le repère visuel absolu de Berlin et symbolise son horizon avant-gardiste.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="w-10 h-10 rounded-2xl bg-amber-200 flex items-center justify-center font-bold text-charcoal shrink-0">
+            02
+          </div>
+          <div>
+            <h4 class="font-grotesk font-bold text-charcoal text-base">La musique en immersion</h4>
+            <p class="text-xs text-charcoal/70 mt-1 leading-relaxed">
+              Écouter ces refrains allemands culte (de Nena à Peter Schilling en passant par Cro) vous plonge dans la langue et l'énergie du pays avant même d'atterrir.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="w-10 h-10 rounded-2xl bg-stone-200 flex items-center justify-center font-bold text-charcoal shrink-0">
+            03
+          </div>
+          <div>
+            <h4 class="font-grotesk font-bold text-charcoal text-base">Design Bauhaus & Néo-Grotesque</h4>
+            <p class="text-xs text-charcoal/70 mt-1 leading-relaxed">
+              Une mise en page épurée, claire, aux teintes chaudes et contemporaines, fidèle à l'école de design moderne de Berlin et d'Allemagne.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full border-t border-amber-900/10 py-6 text-center text-xs text-charcoal/60 mt-8">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <p>Voyage Berlin 2026 • Section Européenne Allemand • Lycée Vauvenargues (Aix-en-Provence)</p>
+      <p class="font-grotesk font-medium">Gute Reise nach Berlin! 🥨 ✈</p>
+    </div>
+  </footer>
+
+  <!-- Web Audio Synthesizer & Turntable Logic Script -->
+  <script>
+    // Playlist data with curated German songs, vibes and sound presets
+    const tracks = [
+      {
+        id: 0,
+        title: "Major Tom (Völlig losgelöst)",
+        artist: "Peter Schilling",
+        genre: "NDW • Culte",
+        duration: "3:58",
+        labelGradient: "radial-gradient(circle, #FCE77D 20%, #E63946 55%, #1D3557 90%)",
+        colorBadge: "#E63946",
+        quoteDe: "« Dann hebt er ab und völlig losgelöst von der Erde schwebt das Raumschiff... »",
+        quoteFr: "« Alors il décolle et en apesanteur totale, loin de la Terre... » — L'hymne officiel du décollage !",
+        synthBaseFreq: 220,
+        bpm: 128
+      },
+      {
+        id: 1,
+        title: "99 Luftballons",
+        artist: "Nena",
+        genre: "Pop / New Wave",
+        duration: "3:52",
+        labelGradient: "radial-gradient(circle, #FFD166 20%, #EF476F 50%, #06D6A0 90%)",
+        colorBadge: "#EF476F",
+        quoteDe: "« 99 Luftballons auf ihrem Weg zum Horizont... »",
+        quoteFr: "« 99 ballons en route vers l'horizon... » — Le chef-d'œuvre incontournable de l'époque du Mur.",
+        synthBaseFreq: 261.63,
+        bpm: 194
+      },
+      {
+        id: 2,
+        title: "Tage wie diese",
+        artist: "Die Toten Hosen",
+        genre: "Rock / Hymne",
+        duration: "4:31",
+        labelGradient: "radial-gradient(circle, #FCE77D 15%, #457B9D 55%, #1D3557 90%)",
+        colorBadge: "#457B9D",
+        quoteDe: "« An Tagen wie diesen wünscht man sich Unendlichkeit... »",
+        quoteFr: "« Dans des journées comme celle-ci, on voudrait que le temps s'arrête... » — Pour célébrer le départ !",
+        synthBaseFreq: 196,
+        bpm: 114
+      },
+      {
+        id: 3,
+        title: "Einmal um die Welt",
+        artist: "Cro",
+        genre: "Raop / Hip-Hop",
+        duration: "2:22",
+        labelGradient: "radial-gradient(circle, #FCE77D 30%, #F4A261 60%, #264653 90%)",
+        colorBadge: "#F4A261",
+        quoteDe: "« Baby, bitte mach dir nie mehr Sorgen um Geld... »",
+        quoteFr: "« Bébé, ne te soucie plus jamais d'argent, on fait le tour du monde... » — Le son pop branché.",
+        synthBaseFreq: 329.63,
+        bpm: 100
+      },
+      {
+        id: 4,
+        title: "Chöre",
+        artist: "Mark Forster",
+        genre: "Pop Allemande",
+        duration: "3:28",
+        labelGradient: "radial-gradient(circle, #FFF3B0 25%, #E09F3E 55%, #9E2A2B 90%)",
+        colorBadge: "#E09F3E",
+        quoteDe: "« Und die Chöre singen für dich... »",
+        quoteFr: "« Et les chorales chantent pour toi... » — De quoi donner une énergie communicative à tout le groupe.",
+        synthBaseFreq: 293.66,
+        bpm: 110
+      },
+      {
+        id: 5,
+        title: "Aurélie",
+        artist: "Wir sind Helden",
+        genre: "Indie Pop",
+        duration: "3:16",
+        labelGradient: "radial-gradient(circle, #FCE77D 20%, #A8DADC 60%, #1D3557 90%)",
+        colorBadge: "#A8DADC",
+        quoteDe: "« Aurélie, so einfach ist das nicht... die Deutschen flirten sehr subtil. »",
+        quoteFr: "« Aurélie ce n'est pas si simple... les Allemands draguent de façon très subtile ! » — Amusant contraste culturel franco-allemand.",
+        synthBaseFreq: 246.94,
+        bpm: 120
+      },
+      {
+        id: 6,
+        title: "Wunder",
+        artist: "Ayliva & Apache 207",
+        genre: "Contemporary Pop / Rap",
+        duration: "2:45",
+        labelGradient: "radial-gradient(circle, #FCE77D 15%, #E76F51 50%, #2A9D8F 90%)",
+        colorBadge: "#E76F51",
+        quoteDe: "« Glaubst du noch an Wunder? »",
+        quoteFr: "« Crois-tu encore aux miracles ? » — Le hit géant des charts modernes en Allemagne.",
+        synthBaseFreq: 220,
+        bpm: 124
+      },
+      {
+        id: 7,
+        title: "Beat Fantasy",
+        artist: "Purple Disco Machine",
+        genre: "Nu-Disco / Berlin Electro",
+        duration: "3:40",
+        labelGradient: "radial-gradient(circle, #FCE77D 20%, #8338EC 55%, #3A86FF 90%)",
+        colorBadge: "#8338EC",
+        quoteDe: "« Berlin Elektro & Club Groove »",
+        quoteFr: "« Le son clubbing chic made in Germany qui fait danser le monde entier. »",
+        synthBaseFreq: 130.81,
+        bpm: 121
+      },
+      {
+        id: 8,
+        title: "Blaue Flecken",
+        artist: "Provinz",
+        genre: "Indie Rock",
+        duration: "3:10",
+        labelGradient: "radial-gradient(circle, #FDF0D5 20%, #669BBC 60%, #003049 90%)",
+        colorBadge: "#669BBC",
+        quoteDe: "« Wir tanzen auf den Scherben... »",
+        quoteFr: "« On danse sur les éclats... » — Une énergie brute et poétique adorée par les lycéens allemands.",
+        synthBaseFreq: 174.61,
+        bpm: 128
+      },
+      {
+        id: 9,
+        title: "Paris Syndrom",
+        artist: "Blumengarten",
+        genre: "Alternative R&B",
+        duration: "2:54",
+        labelGradient: "radial-gradient(circle, #FCE77D 20%, #DDA15E 55%, #BC6C25 90%)",
+        colorBadge: "#DDA15E",
+        quoteDe: "« Vibe douce & atmosphérique »",
+        quoteFr: "« Nouvelle scène indie allemande, doux et parfait dans le calme du terminal. »",
+        synthBaseFreq: 164.81,
+        bpm: 96
+      },
+      {
+        id: 10,
+        title: "Ohne dich",
+        artist: "Rammstein",
+        genre: "Ballade Métal / Neue Deutsche Härte",
+        duration: "4:32",
+        labelGradient: "radial-gradient(circle, #D5D5D5 20%, #4B5563 60%, #111827 95%)",
+        colorBadge: "#4B5563",
+        quoteDe: "« Ohne dich kann ich nicht sein... »",
+        quoteFr: "« Sans toi je ne peux pas exister... » — La facette poétique et théâtrale légendaire de Rammstein.",
+        synthBaseFreq: 146.83,
+        bpm: 75
+      },
+      {
+        id: 11,
+        title: "Auf uns",
+        artist: "Andreas Bourani",
+        genre: "Pop / Hymne",
+        duration: "4:00",
+        labelGradient: "radial-gradient(circle, #FCE77D 30%, #E76F51 60%, #264653 90%)",
+        colorBadge: "#264653",
+        quoteDe: "« Ein Hoch auf das, was vor uns liegt... Ein Hoch auf uns! »",
+        quoteFr: "« Un toast à ce qui nous attend... Un toast à nous ! » — Le toast officiel pour le voyage !",
+        synthBaseFreq: 261.63,
+        bpm: 126
+      }
+    ];
+
+    // State Variables
+    let currentTrackIndex = 0;
+    let isPlaying = false;
+    let crackleEnabled = true;
+
+    // Web Audio Context setup for playable real sounds
+    let audioCtx = null;
+    let loopInterval = null;
+    let crackleNode = null;
+    let crackleGain = null;
+
+    // Elements
+    const vinylRecord = document.getElementById('vinylRecord');
+    const fernsehturmTonearm = document.getElementById('fernsehturmTonearm');
+    const mainPlayBtn = document.getElementById('mainPlayBtn');
+    const playIcon = document.getElementById('playIcon');
+    const needleStatus = document.getElementById('needleStatus');
+    const smallDiscIcon = document.getElementById('smallDiscIcon');
+    const playlistContainer = document.getElementById('playlistContainer');
+
+    const currentTrackTitle = document.getElementById('currentTrackTitle');
+    const currentTrackArtist = document.getElementById('currentTrackArtist');
+    const recordLabel = document.getElementById('recordLabel');
+    const labelArtist = document.getElementById('labelArtist');
+    const labelTrack = document.getElementById('labelTrack');
+    const quoteGerman = document.getElementById('quoteGerman');
+    const quoteFrench = document.getElementById('quoteFrench');
+
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const crackleToggle = document.getElementById('crackleToggle');
+    const crackleLabel = document.getElementById('crackleLabel');
+    const randomVibeBtn = document.getElementById('randomVibeBtn');
+
+    // Initialize Audio Context on user gesture
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    // Gentle vinyl crackle noise synthesis
+    function createCrackleEffect() {
+      if (!audioCtx) return;
+      const bufferSize = audioCtx.sampleRate * 2;
+      const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+      const data = buffer.getChannelData(0);
+      
+      // Pink/Brown noise with occasional dust pop spikes
+      let lastOut = 0.0;
+      for (let i = 0; i < bufferSize; i++) {
+        const white = Math.random() * 2 - 1;
+        lastOut = (lastOut + (0.02 * white)) / 1.02;
+        // occasional needle pop
+        let pop = 0;
+        if (Math.random() < 0.0006) {
+          pop = (Math.random() - 0.5) * 0.4;
+        }
+        data[i] = (lastOut * 0.08) + pop;
+      }
+
+      crackleNode = audioCtx.createBufferSource();
+      crackleNode.buffer = buffer;
+      crackleNode.loop = true;
+
+      crackleGain = audioCtx.createGain();
+      crackleGain.gain.setValueAtTime(crackleEnabled ? 0.12 : 0, audioCtx.currentTime);
+
+      crackleNode.connect(crackleGain);
+      crackleGain.connect(audioCtx.destination);
+      crackleNode.start();
+    }
+
+    // Melodic Synthesized Grooves preview based on the track
+    function playNote(freq, time, duration = 0.2, type = 'sine') {
+      if (!audioCtx) return;
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, time);
+
+        gain.gain.setValueAtTime(0.001, time);
+        gain.gain.exponentialRampToValueAtTime(0.18, time + 0.03);
+        gain.gain.exponentialRampToValueAtTime(0.001, time + duration);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(time);
+        osc.stop(time + duration + 0.05);
+      } catch(e) {
+        console.error(e);
+      }
+    }
+
+    // Play rhythmic groove loop matching the selected German track
+    function startMelodicLoop() {
+      stopMelodicLoop();
+      if (!audioCtx) return;
+
+      const track = tracks[currentTrackIndex];
+      const base = track.synthBaseFreq;
+      // Musical scales/rhythms adapted to track
+      const pentatonic = [base, base * 1.125, base * 1.25, base * 1.5, base * 1.66, base * 2];
+      let step = 0;
+
+      const stepInterval = Math.max(160, Math.floor(60000 / (track.bpm * 2)));
+
+      loopInterval = setInterval(() => {
+        if (!isPlaying || !audioCtx) return;
+        const now = audioCtx.currentTime;
+
+        // Bassline on beats 1 and 3
+        if (step % 4 === 0) {
+          playNote(base / 2, now, 0.28, 'triangle');
+        }
+        
+        // Synth melody line
+        if (step % 2 === 0 || Math.random() > 0.4) {
+          const noteIndex = Math.floor(Math.random() * pentatonic.length);
+          playNote(pentatonic[noteIndex], now + 0.02, 0.22, 'sine');
+        }
+
+        step = (step + 1) % 16;
+      }, stepInterval);
+    }
+
+    function stopMelodicLoop() {
+      if (loopInterval) {
+        clearInterval(loopInterval);
+        loopInterval = null;
+      }
+      if (crackleNode) {
+        try {
+          crackleNode.stop();
+          crackleNode.disconnect();
+        } catch(e) {}
+        crackleNode = null;
+      }
+    }
+
+    // Render Playlist dynamically
+    function renderPlaylist() {
+      playlistContainer.innerHTML = '';
+      tracks.forEach((track, index) => {
+        const isCurrent = index === currentTrackIndex;
+        const item = document.createElement('div');
+        item.className = `flex items-center justify-between p-2.5 rounded-2xl cursor-pointer transition-all border ${
+          isCurrent 
+            ? 'bg-amber-100/90 border-amber-300 font-semibold shadow-xs' 
+            : 'bg-cream/40 border-stone-200/50 hover:bg-amber-50/70 hover:border-amber-200'
+        }`;
+        
+        item.onclick = () => selectTrack(index);
+
+        item.innerHTML = `
+          <div class="flex items-center space-x-3 overflow-hidden">
+            <div class="w-8 h-8 rounded-xl flex items-center justify-center text-xs font-grotesk font-bold ${
+              isCurrent ? 'bg-charcoal text-berlinYellow' : 'bg-stone-200/80 text-charcoal/70'
+            }">
+              ${isCurrent && isPlaying ? '<i class="fa-solid fa-volume-high animate-pulse text-[11px]"></i>' : (index + 1)}
+            </div>
+            <div class="truncate">
+              <p class="text-xs sm:text-sm font-grotesk ${isCurrent ? 'text-charcoal font-bold' : 'text-charcoal/90'} truncate">
+                ${track.title}
+              </p>
+              <p class="text-[11px] text-charcoal/60 truncate">${track.artist}</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2 text-right shrink-0">
+            <span class="text-[10px] uppercase font-grotesk tracking-wide px-2 py-0.5 rounded-md hidden sm:inline-block" 
+                  style="background-color: ${track.colorBadge}18; color: ${track.colorBadge};">
+              ${track.genre}
+            </span>
+            <span class="text-xs font-mono text-charcoal/50">${track.duration}</span>
+          </div>
+        `;
+        playlistContainer.appendChild(item);
+      });
+    }
+
+    // Apply Track data to UI & Vinyl Center
+    function updateTrackUI() {
+      const current = tracks[currentTrackIndex];
+      currentTrackTitle.textContent = current.title;
+      currentTrackArtist.textContent = `${current.artist} • ${current.genre}`;
+      labelArtist.textContent = current.artist;
+      labelTrack.textContent = current.title;
+      recordLabel.style.background = current.labelGradient;
+      quoteGerman.textContent = current.quoteDe;
+      quoteFrench.textContent = current.quoteFr;
+      renderPlaylist();
+    }
+
+    // Playback Controller
+    function setPlaybackState(playing) {
+      isPlaying = playing;
+      if (isPlaying) {
+        initAudio();
+        // Vinyl starts spinning
+        vinylRecord.classList.remove('vinyl-paused');
+        smallDiscIcon.style.animationPlayState = 'running';
+
+        // Fernsehturm Tonearm smoothly pivots onto the vinyl groove
+        fernsehturmTonearm.classList.remove('tonearm-resting');
+        fernsehturmTonearm.classList.add('tonearm-playing');
+
+        // Button icon updates
+        playIcon.classList.remove('fa-play', 'translate-x-0.5');
+        playIcon.classList.add('fa-pause');
+        needleStatus.textContent = "Lecture en cours (Tour posée)";
+
+        // Start Web Audio sounds
+        createCrackleEffect();
+        startMelodicLoop();
+      } else {
+        // Vinyl stops
+        vinylRecord.classList.add('vinyl-paused');
+        smallDiscIcon.style.animationPlayState = 'paused';
+
+        // Fernsehturm returns to rest
+        fernsehturmTonearm.classList.remove('tonearm-playing');
+        fernsehturmTonearm.classList.add('tonearm-resting');
+
+        // Button icon
+        playIcon.classList.remove('fa-pause');
+        playIcon.classList.add('fa-play', 'translate-x-0.5');
+        needleStatus.textContent = "Bras au repos (Arrêt)";
+
+        // Stop Audio
+        stopMelodicLoop();
+      }
+      renderPlaylist();
+    }
+
+    function togglePlay() {
+      setPlaybackState(!isPlaying);
+    }
+
+    function selectTrack(index) {
+      currentTrackIndex = index;
+      updateTrackUI();
+      // If already playing, restart loop with the new track profile
+      if (isPlaying) {
+        startMelodicLoop();
+      } else {
+        setPlaybackState(true);
+      }
+    }
+
+    function nextTrack() {
+      currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+      selectTrack(currentTrackIndex);
+    }
+
+    function prevTrack() {
+      currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+      selectTrack(currentTrackIndex);
+    }
+
+    // Event Listeners
+    mainPlayBtn.addEventListener('click', togglePlay);
+    vinylRecord.addEventListener('click', togglePlay);
+    nextBtn.addEventListener('click', nextTrack);
+    prevBtn.addEventListener('click', prevTrack);
+
+    // Crackle sound toggle
+    crackleToggle.addEventListener('click', () => {
+      crackleEnabled = !crackleEnabled;
+      if (crackleGain && audioCtx) {
+        crackleGain.gain.setValueAtTime(crackleEnabled ? 0.12 : 0, audioCtx.currentTime);
+      }
+      crackleLabel.textContent = crackleEnabled ? "Crackle ON" : "Crackle OFF";
+      crackleToggle.classList.toggle('text-charcoal/40', !crackleEnabled);
+    });
+
+    // Random track picker
+    randomVibeBtn.addEventListener('click', () => {
+      const randomIndex = Math.floor(Math.random() * tracks.length);
+      selectTrack(randomIndex);
+    });
+
+    // Initial setup
+    updateTrackUI();
+  </script>
+</body>
+</html>
