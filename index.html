@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>BER Berlin — Euro Allemand &amp; EPS 2026</title>
+  <title>BER Berlin — Euro Allemand EPS 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
     :root {
       --bg-cream: #FAF3E0;
       --card-bg: #FFFFFF;
-      --accent-yellow: #FCE77D;
+      --airport-yellow: #FFD000;
       --text-dark: #18181B;
       --text-muted: #71717A;
       --border-color: #E4E4E7;
@@ -62,32 +62,41 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
-    .tag {
-      background: var(--accent-yellow);
+    /* Texte Euro Allemand sobre */
+    .section-label {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 999px;
-      letter-spacing: 0.5px;
+      color: #334155;
+      letter-spacing: 0.4px;
       text-transform: uppercase;
     }
 
-    .airport-code {
+    /* Badge aéroport BER jaune */
+    .airport-badge {
+      background: var(--airport-yellow);
+      color: #000000;
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 26px;
+      font-size: 20px;
       font-weight: 700;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
+      padding: 4px 12px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+      border: 1.5px solid #E5B700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .route-title {
       font-size: 15px;
       font-weight: 700;
       color: #0F172A;
-      margin-top: 2px;
+      margin-top: 4px;
     }
 
     .sub-route {
@@ -149,238 +158,4 @@
 
     @keyframes spin {
       from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .tap-hint {
-      text-align: center;
-      font-size: 12px;
-      font-weight: 600;
-      color: #64748B;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-
-    /* Section Lecteurs */
-    .player-section {
-      display: none;
-      flex-direction: column;
-      gap: 12px;
-      animation: fadeIn 0.5s ease-out forwards;
-    }
-
-    .player-section.visible {
-      display: flex;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Onglets */
-    .platform-tabs {
-      display: flex;
-      background: #F1F5F9;
-      padding: 4px;
-      border-radius: 12px;
-      gap: 4px;
-    }
-
-    .tab-btn {
-      flex: 1;
-      border: none;
-      background: transparent;
-      padding: 8px 12px;
-      font-size: 13px;
-      font-weight: 600;
-      border-radius: 8px;
-      cursor: pointer;
-      color: var(--text-muted);
-      transition: all 0.2s ease;
-    }
-
-    .tab-btn.active {
-      background: #FFFFFF;
-      color: var(--text-dark);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-    }
-
-    .tab-content {
-      display: none;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .tab-content.active {
-      display: flex;
-    }
-
-    .iframe-box {
-      border-radius: 12px;
-      overflow: hidden;
-      background: #000;
-    }
-
-    .app-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      color: #FFFFFF;
-      font-weight: 700;
-      font-size: 13px;
-      text-decoration: none;
-      padding: 11px 16px;
-      border-radius: 999px;
-      transition: transform 0.15s ease, opacity 0.15s ease;
-    }
-
-    .app-btn:active {
-      transform: scale(0.98);
-      opacity: 0.9;
-    }
-
-    .btn-spotify {
-      background-color: var(--spotify-green);
-      box-shadow: 0 4px 12px rgba(29, 185, 84, 0.3);
-    }
-
-    .btn-apple {
-      background-color: var(--apple-pink);
-      box-shadow: 0 4px 12px rgba(250, 45, 72, 0.3);
-    }
-  </style>
-</head>
-<body>
-
-  <div class="phone-container">
-
-    <!-- En-tête Embarquement -->
-    <div class="boarding-pass">
-      <div class="badge-row">
-        <span class="tag">Euro Allemand &amp; EPS • 2026</span>
-        <span class="airport-code">BER</span>
-      </div>
-      <div class="route-title">En route vers Berlin ! ✈️</div>
-      <div class="sub-route">Lycée Vauvenargues ➔ Berlin (Flughafen Sound-Trip)</div>
-    </div>
-
-    <p class="intro-text">
-      <strong>Prêt pour Berlin ?</strong> Plonge dans l'ambiance berlinoise dès l'aéroport ! Active la platine avec la <em>Fernsehturm</em> pour lancer la bande-son du voyage.
-    </p>
-
-    <!-- Platine avec disque d'origine -->
-    <div class="turntable-wrapper" id="turntable" onclick="togglePlatine()">
-      
-      <svg class="vinyl-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="250" cy="250" r="230" fill="#18181B"/>
-        <circle cx="250" cy="250" r="215" fill="none" stroke="#27272A" stroke-width="2"/>
-        <circle cx="250" cy="250" r="190" fill="none" stroke="#27272A" stroke-width="1.5" stroke-dasharray="12 4"/>
-        <circle cx="250" cy="250" r="165" fill="none" stroke="#27272A" stroke-width="1.5"/>
-        <circle cx="250" cy="250" r="140" fill="none" stroke="#27272A" stroke-width="1"/>
-
-        <circle cx="250" cy="250" r="120" fill="#FAF3E0"/>
-        <circle cx="250" cy="250" r="105" fill="#9D0208"/>
-        <circle cx="250" cy="250" r="90" fill="#D00000"/>
-        <circle cx="250" cy="250" r="75" fill="#DC2F02"/>
-        <circle cx="250" cy="250" r="60" fill="#E85D04"/>
-        <circle cx="250" cy="250" r="45" fill="#F48C06"/>
-        <circle cx="250" cy="250" r="32" fill="#FAA307"/>
-        <circle cx="250" cy="250" r="20" fill="#FFBA08"/>
-        
-        <circle cx="250" cy="250" r="12" fill="#18181B"/>
-        <circle cx="250" cy="250" r="5" fill="#FAF3E0"/>
-      </svg>
-
-      <!-- Fernsehturm SVG (Bras de lecture) -->
-      <svg class="tonearm" viewBox="0 0 160 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="85" cy="35" r="22" fill="#CBD5E1" stroke="#64748B" stroke-width="3"/>
-        <circle cx="85" cy="35" r="8" fill="#18181B"/>
-        <polygon points="80,45 90,45 74,180 56,180" fill="#94A3B8" stroke="#64748B" stroke-width="2"/>
-        <circle cx="65" cy="205" r="30" fill="#E2E8F0" stroke="#475569" stroke-width="2.5"/>
-        <line x1="42" y1="205" x2="88" y2="205" stroke="#94A3B8" stroke-width="2"/>
-        <line x1="65" y1="175" x2="65" y2="235" stroke="#94A3B8" stroke-width="2"/>
-        <line x1="65" y1="235" x2="38" y2="325" stroke="#EF4444" stroke-width="6" stroke-linecap="round"/>
-        <line x1="56" y1="262" x2="48" y2="292" stroke="#FFFFFF" stroke-width="6"/>
-        <polygon points="38,325 30,338 23,332 32,320" fill="#0F172A"/>
-        <circle cx="26" cy="335" r="2.5" fill="#E85D04"/>
-      </svg>
-    </div>
-
-    <div class="tap-hint" id="tapHint">
-      👆 Touche la platine pour poser la Fernsehturm
-    </div>
-
-    <!-- Section lecteurs Spotify & Apple Music -->
-    <div class="player-section" id="playerSection">
-      
-      <div class="platform-tabs">
-        <button class="tab-btn active" onclick="switchPlatform('spotify')">🟢 Spotify</button>
-        <button class="tab-btn" onclick="switchPlatform('apple')">🍎 Apple Music</button>
-      </div>
-
-      <!-- Onglet Spotify avec le code officiel complet -->
-      <div class="tab-content active" id="tab-spotify">
-        <div class="iframe-box">
-          <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4rqF3EMdG0nNfsnOoTzbBI?utm_source=generator&si=013f39cec2a54d84" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
-        <a href="https://open.spotify.com/playlist/4rqF3EMdG0nNfsnOoTzbBI?si=013f39cec2a54d84" target="_blank" class="app-btn btn-spotify">
-          Ouvrir dans l'app Spotify
-        </a>
-      </div>
-
-      <!-- Onglet Apple Music -->
-      <div class="tab-content" id="tab-apple">
-        <div class="iframe-box">
-          <iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="175" style="width:100%;max-width:660px;overflow:hidden;border-radius:12px;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/fr/playlist/berlin-2026/pl.u-dj60sg5aov"></iframe>
-        </div>
-        <a href="https://music.apple.com/fr/playlist/berlin-2026/pl.u-dj60sg5aov" target="_blank" class="app-btn btn-apple">
-          Ouvrir dans Apple Music
-        </a>
-      </div>
-
-    </div>
-
-  </div>
-
-  <script>
-    let isPlaying = false;
-
-    function togglePlatine() {
-      const turntable = document.getElementById('turntable');
-      const playerSection = document.getElementById('playerSection');
-      const tapHint = document.getElementById('tapHint');
-
-      isPlaying = !isPlaying;
-
-      if (isPlaying) {
-        turntable.classList.add('active');
-        playerSection.classList.add('visible');
-        tapHint.innerHTML = '🟢 <em>Fernsehturm</em> en position — Bande-son active';
-      } else {
-        turntable.classList.remove('active');
-        tapHint.innerHTML = '👆 Touche la platine pour poser la Fernsehturm';
-      }
-    }
-
-    function switchPlatform(platform) {
-      const tabs = document.querySelectorAll('.tab-btn');
-      tabs.forEach(t => t.classList.remove('active'));
-
-      document.getElementById('tab-spotify').classList.remove('active');
-      document.getElementById('tab-apple').classList.remove('active');
-
-      if (platform === 'spotify') {
-        tabs[0].classList.add('active');
-        document.getElementById('tab-spotify').classList.add('active');
-      } else {
-        tabs[1].classList.add('active');
-        document.getElementById('tab-apple').classList.add('active');
-      }
-    }
-  </script>
-</body>
-</html>
+      to { transform: rotate(36
