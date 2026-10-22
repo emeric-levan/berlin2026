@@ -48,7 +48,7 @@
       gap: 16px;
     }
 
-    /* En-tête style carte d'embarquement */
+    /* En-tête style billet d'embarquement */
     .boarding-pass {
       background: #F8F9FA;
       border: 1.5px dashed #CBD5E1;
@@ -103,7 +103,7 @@
       padding: 0 4px;
     }
 
-    /* Cadre de la platine */
+    /* Zone de la platine vinyle */
     .turntable-wrapper {
       position: relative;
       width: 100%;
@@ -118,12 +118,46 @@
       cursor: pointer;
     }
 
-    /* Disque vinyle aux anneaux chromatiques d'origine */
-    .vinyl-svg {
+    /* Disque vinyle */
+    .vinyl {
       width: 82%;
       height: 82%;
+      border-radius: 50%;
+      background: radial-gradient(circle, #27272A 35%, #18181B 70%);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: transform 0.5s ease;
-      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.18));
+    }
+
+    .vinyl::before {
+      content: '';
+      position: absolute;
+      width: 90%;
+      height: 90%;
+      border-radius: 50%;
+      border: 1px dashed rgba(255,255,255,0.12);
+    }
+
+    .vinyl-label {
+      width: 44%;
+      height: 44%;
+      border-radius: 50%;
+      background: radial-gradient(circle, #FAF3E0 15%, #E85D04 50%, #FAA307 85%);
+      box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vinyl-hole {
+      width: 14px;
+      height: 14px;
+      background: #FFFFFF;
+      border-radius: 50%;
+      border: 2px solid #18181B;
     }
 
     /* Bras de lecture : Fernsehturm */
@@ -140,13 +174,13 @@
       pointer-events: none;
     }
 
-    /* États actifs quand on clique sur la platine */
+    /* États quand la platine est active */
     .turntable-wrapper.active .tonearm {
       transform: rotate(5deg);
     }
 
-    .turntable-wrapper.active .vinyl-svg {
-      animation: spin 3s linear infinite 0.8s;
+    .turntable-wrapper.active .vinyl {
+      animation: spin 2.8s linear infinite 0.8s;
     }
 
     @keyframes spin {
@@ -154,6 +188,7 @@
       to { transform: rotate(360deg); }
     }
 
+    /* Invite d'action */
     .tap-hint {
       text-align: center;
       font-size: 12px;
@@ -165,11 +200,11 @@
       gap: 6px;
     }
 
-    /* Section Spotify révélée au clic */
+    /* Section Playlist Spotify (révélée au clic) */
     .player-section {
       display: none;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       animation: fadeIn 0.5s ease-out forwards;
     }
 
@@ -180,12 +215,6 @@
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
-    }
-
-    .spotify-iframe-box {
-      border-radius: 12px;
-      overflow: hidden;
-      background: #000;
     }
 
     .spotify-btn {
@@ -201,12 +230,12 @@
       padding: 12px 16px;
       border-radius: 999px;
       box-shadow: 0 4px 14px rgba(29, 185, 84, 0.35);
-      transition: transform 0.15s ease, background-color 0.15s ease;
     }
 
-    .spotify-btn:hover {
-      background-color: #1ed760;
-      transform: translateY(-1px);
+    .spotify-iframe-box {
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
     }
   </style>
 </head>
@@ -214,7 +243,7 @@
 
   <div class="phone-container">
 
-    <!-- En-tête Billet d'embarquement -->
+    <!-- En-tête Embarquement -->
     <div class="boarding-pass">
       <div class="badge-row">
         <span class="tag">Euro Allemand &amp; EPS • 2026</span>
@@ -229,43 +258,31 @@
       <strong>Prêt pour Berlin ?</strong> Plonge dans l'ambiance berlinoise dès l'aéroport ! Active la platine avec la <em>Fernsehturm</em> pour lancer la bande-son du voyage.
     </p>
 
-    <!-- Platine avec le disque graphique d'origine -->
+    <!-- Platine interactive -->
     <div class="turntable-wrapper" id="turntable" onclick="togglePlatine()">
       
-      <!-- Disque vinyle avec anneaux concentriques colorés chauds -->
-      <svg class="vinyl-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-        <!-- Fond vinyle noir & sillons -->
-        <circle cx="250" cy="250" r="230" fill="#18181B"/>
-        <circle cx="250" cy="250" r="215" fill="none" stroke="#27272A" stroke-width="2"/>
-        <circle cx="250" cy="250" r="190" fill="none" stroke="#27272A" stroke-width="1.5" stroke-dasharray="12 4"/>
-        <circle cx="250" cy="250" r="165" fill="none" stroke="#27272A" stroke-width="1.5"/>
-        <circle cx="250" cy="250" r="140" fill="none" stroke="#27272A" stroke-width="1"/>
-
-        <!-- Anneaux concentriques chromatiques -->
-        <circle cx="250" cy="250" r="120" fill="#FAF3E0"/>
-        <circle cx="250" cy="250" r="105" fill="#9D0208"/>
-        <circle cx="250" cy="250" r="90" fill="#D00000"/>
-        <circle cx="250" cy="250" r="75" fill="#DC2F02"/>
-        <circle cx="250" cy="250" r="60" fill="#E85D04"/>
-        <circle cx="250" cy="250" r="45" fill="#F48C06"/>
-        <circle cx="250" cy="250" r="32" fill="#FAA307"/>
-        <circle cx="250" cy="250" r="20" fill="#FFBA08"/>
-        
-        <!-- Centre et trou du vinyle -->
-        <circle cx="250" cy="250" r="12" fill="#18181B"/>
-        <circle cx="250" cy="250" r="5" fill="#FAF3E0"/>
-      </svg>
+      <!-- Disque vinyle -->
+      <div class="vinyl" id="vinyl">
+        <div class="vinyl-label">
+          <div class="vinyl-hole"></div>
+        </div>
+      </div>
 
       <!-- Fernsehturm SVG (Bras de lecture) -->
       <svg class="tonearm" viewBox="0 0 160 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Base tourillon / pivot -->
         <circle cx="85" cy="35" r="22" fill="#CBD5E1" stroke="#64748B" stroke-width="3"/>
         <circle cx="85" cy="35" r="8" fill="#18181B"/>
+        <!-- Pylône béton / bras -->
         <polygon points="80,45 90,45 74,180 56,180" fill="#94A3B8" stroke="#64748B" stroke-width="2"/>
+        <!-- Sphère Fernsehturm -->
         <circle cx="65" cy="205" r="30" fill="#E2E8F0" stroke="#475569" stroke-width="2.5"/>
         <line x1="42" y1="205" x2="88" y2="205" stroke="#94A3B8" stroke-width="2"/>
         <line x1="65" y1="175" x2="65" y2="235" stroke="#94A3B8" stroke-width="2"/>
+        <!-- Antenne striée rouge et blanc -->
         <line x1="65" y1="235" x2="38" y2="325" stroke="#EF4444" stroke-width="6" stroke-linecap="round"/>
         <line x1="56" y1="262" x2="48" y2="292" stroke="#FFFFFF" stroke-width="6"/>
+        <!-- Tête de lecture / diamant -->
         <polygon points="38,325 30,338 23,332 32,320" fill="#0F172A"/>
         <circle cx="26" cy="335" r="2.5" fill="#E85D04"/>
       </svg>
@@ -276,16 +293,17 @@
       👆 Touche la platine pour poser la Fernsehturm
     </div>
 
-    <!-- Section avec votre playlist Spotify -->
+    <!-- Section Spotify (apparaît dès que la platine est activée) -->
     <div class="player-section" id="playerSection">
       
-      <!-- Lecteur Spotify miniature embarqué -->
+      <!-- Lecteur Spotify miniature intégré -->
       <div class="spotify-iframe-box">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4rqF3EMdG0nNfsnOoTzbBI?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <!-- Remplacez le lien src ci-dessous par l'URL d'intégration de votre propre playlist si vous en avez une ! -->
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX4jP4e9RSoLC?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>
 
-      <!-- Bouton ouvrant directement la playlist dans l'application Spotify -->
-      <a href="https://open.spotify.com/playlist/4rqF3EMdG0nNfsnOoTzbBI" target="_blank" class="spotify-btn">
+      <!-- Bouton d'ouverture direct dans l'application Spotify des élèves -->
+      <a href="https://open.spotify.com/playlist/37i9dQZF1DX4jP4e9RSoLC" target="_blank" class="spotify-btn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.498 17.306c-.215.353-.674.466-1.027.25-2.825-1.728-6.38-2.119-10.57-1.162-.403.092-.806-.16-.898-.564-.092-.403.16-.806.564-.898 4.588-1.048 8.524-.606 11.68 1.328.353.216.467.674.251 1.046zm1.468-3.262c-.27.44-.848.577-1.288.307-3.233-1.987-8.16-2.563-11.986-1.401-.497.151-1.026-.134-1.177-.631-.151-.497.134-1.026.631-1.177 4.373-1.327 9.808-.687 13.513 1.589.44.27.577.848.307 1.313zm.126-3.41c-3.877-2.302-10.278-2.514-13.987-1.388-.594.18-1.226-.157-1.406-.751-.18-.594.157-1.226.751-1.406 4.26-1.294 11.322-1.045 15.794 1.61.534.317.708 1.01.391 1.544-.318.535-1.01.708-1.543.391z"/>
         </svg>
